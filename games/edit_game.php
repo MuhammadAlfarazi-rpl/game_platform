@@ -1,10 +1,11 @@
 <?php
- include("../koneksi.php");
+ include("../koneksi.php"); // Menyertakan file koneksi untuk akses database
 
- $id = $_GET['game_id'];
+ $id = $_GET['game_id']; // Menyimpan nilai/value dari game_id dalam variabel $game_id
 
+ // Mengambik data dari Database berdasarkan 'game_id' bernilai variabel $id
  $query = $db->query("SELECT * FROM games WHERE game_id = '$id'");
- $game = $query->fetch_assoc();
+ $game = $query->fetch_assoc(); /* Menggunakan fetch_assoc untuk mengambil data perulangan dalam bentuk array */
  ?>
 
 <!DOCTYPE HTML>
@@ -36,14 +37,17 @@
             <tr>
                 <td>Genre</td>
                 <td>
-                    <select name="genre" style="width: 100%" required>
-                        <option value="" disabled>Pilih Genre</option>
-                        <option value="Action" <?php echo ($game['genre'] == 'Action') ? 'selected' : ''; ?>>Action</option>
-                        <option value="Adventure" <?php echo ($game['genre'] == 'Adventure') ? 'selected' : ''; ?>>Adventure</option>
-                        <option value="Horror" <?php echo ($game['genre'] == 'Horror') ? 'selected' : ''; ?>>Horror</option>
-                        <option value="RPG" <?php echo ($game['genre'] == 'RPG') ? 'selected' : ''; ?>>RPG</option>
-                        <option value="Shooter" <?php echo ($game['genre'] == 'Shooter') ? 'selected' : ''; ?>>Shooter</option>
-                    </select>
+                <select name="genre" style="width: 100%" required>
+                <!-- Dropdown untuk memilih genre, wajib diisi -->
+                    <option value="" disabled>Pilih Genre</option>
+                    <!-- Placeholder tidak bisa dipilih -->
+                    <option value="Action" <?php echo ($game['genre'] == 'Action') ? 'selected' : ''; ?>>Action</option>
+                    <option value="Adventure" <?php echo ($game['genre'] == 'Adventure') ? 'selected' : ''; ?>>Adventure</option>
+                    <option value="Horror" <?php echo ($game['genre'] == 'Horror') ? 'selected' : ''; ?>>Horror</option>
+                    <option value="RPG" <?php echo ($game['genre'] == 'RPG') ? 'selected' : ''; ?>>RPG</option>
+                    <option value="Shooter" <?php echo ($game['genre'] == 'Shooter') ? 'selected' : ''; ?>>Shooter</option>
+                    <!-- Menambahkan atribut "selected" pada opsi jika sesuai dengan nilai $game['genre'] -->
+                </select>
                 </td>
             </tr>
         </table>
